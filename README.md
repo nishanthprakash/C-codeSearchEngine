@@ -1,4 +1,4 @@
 C-codeSearchEngine
 ==================
 
-A semantic search engine to search for equivalent C codes
+A semantic search engine to search for equivalent C codes.
