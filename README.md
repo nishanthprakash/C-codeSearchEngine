@@ -5,7 +5,7 @@ A semantic search engine to search for equivalent C codes.
 
 This engine is used to search for equivalent C-codes students might have written in the given data set of student code submissions and their corresponding IDs.
 
-Contains five python scripts:
+Contains six python scripts:
 	
 	1. xlreader.py - reads StudentIDs and their respective codes from an xl sheet (col1 StudentID, col2 corresponding code submitted) and extracts all the code into separate files in the folder codedata with file names as <studentID>.c and also makes a list of studentID and studentcodefiles in the file 'files'. Also note that if the codes are not compiler preprocessed codes, this script will remove preprocessor directives and strip all comments from them. 
 
@@ -17,4 +17,34 @@ Contains five python scripts:
 	
 	5. cleaner.py - cleans all generated data for fresh processing
 
-IMPORTANT: The assumption is the codes given parse successfully, i.e. they are syntactically correct  (failing which this doesn't parse it or use it in the search engine).
+	5. parse_checker.py - does a final check if all the codedata generated parses properly.
+
+IMPORTANT: 
+
+	1. The assumption is the codes given parse successfully, i.e. they are syntactically correct  (failing which this doesn't parse it or use it in the search engine).
+
+	2. Use the utility dos2unix to remove carriage returns etc. which will be considered syntax errors in the parser.
+
+USAGE:
+
+STEPS:
+
+INDEX GENERATION:
+
+	1. Run the xlreader.py which outputs filelist in files
+
+	1a. Run the utility 'dos2unix' for file conversions on all the codes extracted in the folder codedata
+
+	1b. Run parse_checker.py to verify that all the codedata now can be parsed properly (OPTIONAL)
+
+	2. Feed this to dataFeeder.py as arguement and run dataFeeder which feeds data to hashgen.py
+
+SEARCH:
+	
+	Give your code stub file as arg to codeSearch.py and run it. It will look for a match
+
+CLEANING:
+
+	Run cleaner.py to clean all generated code on finishing
+
+

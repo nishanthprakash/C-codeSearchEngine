@@ -25,22 +25,7 @@ ast.ext[0].body.show(buf=sys.stdout)
 sys.stdout = orig_stdout
 f.close()
 
-#----------------------------#anonymizing identifiers.....worry about this later--------------
-#f1 = open('aststring.txt','r').read()
-#f2 = re.sub('ID.*', 'ID', f1)	
-#line=f2.split('\n')
-
-#orig_stdout = sys.stdout
-#f3 = file('anonast.txt', 'w')
-#sys.stdout = f3
-
-#print(f2) 
-
-#sys.stdout = orig_stdout
-#f3.close()
-
-#---------------------------------------------------------------------------------------
-
+ast.ext[0].body.show()
 
 #---we build our own tree as the the AST object doesnt help to postorder traverse----
 #

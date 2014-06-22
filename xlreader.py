@@ -3,13 +3,15 @@ import os.path
 import pycparser
 import re
 
+NUMBER_OF_SUBMISSIONS = 3 #33 in the actual spread sheet
+
 wb = xlrd.open_workbook('codes.xlsx')
 wb.sheet_names()
 sh = wb.sheet_by_index(0)
 i = 1
 
 with open("files", "a") as filelist:
-    while i<33: 	# make this number a variable for later use
+    while i< NUMBER_OF_SUBMISSIONS: 	
 	
         studentID = int(sh.cell(i,0).value)
         code = str(sh.cell(i,1).value)
@@ -48,6 +50,8 @@ with open("files", "a") as filelist:
 	#	continue
 	
 	#print(toparsecode)
+
+	#toparsecode=toparsecode.rstrip('\r\n')	# remove carriage returns 
 	
 	#-------------------------------------------------------------------------
 

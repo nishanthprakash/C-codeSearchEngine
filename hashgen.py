@@ -21,11 +21,11 @@ Studentfile = str(sys.argv[2])
 text = open(Studentfile, 'r').read()
 
 parser = c_parser.CParser()
-#try :
-ast = parser.parse(text, filename='<none>')
-#except:
-#	print("Oh there's a syntax error in this code")
-#	sys.exit()
+try :
+	ast = parser.parse(text, filename='<none>')
+except:
+	print("Oh there's a syntax error in this code")
+	sys.exit()
 
 orig_stdout = sys.stdout
 f = file('aststring.txt', 'w')
