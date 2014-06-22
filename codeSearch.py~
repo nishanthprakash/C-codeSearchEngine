@@ -88,7 +88,7 @@ class Inserter(object):
 
 # ----------- File to tree--------------------------------
 
-with open(r'aststring.txt', 'r') as f1:   
+with open(r'astsearch.txt', 'r') as f1:   
     tree = Node(f1.readline().rstrip('\n'))
     inserter = Inserter(tree)
    	
@@ -136,7 +136,10 @@ print(codehash)
 
 #------------------Find this hash in dictionary of codephrases--------------------
 
-print("This piece of code is found in submissione by the following")
-print(cpdic[hex(codehash)])
+if cpdic.has_key(hex(codehash)):
+	print("This piece of code is found in submissione by the following")
+	print(cpdic[hex(codehash)])
+else:
+	print("No match done")
 
 #---------------------------EOF----------------------------------------------------

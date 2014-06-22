@@ -3,7 +3,3 @@ if(x%i==0 && y%i==0){
              break;
          }
 
-
-//if (hello!=the_world){
-//	exit();
-//}

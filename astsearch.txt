@@ -1,15 +1,8 @@
 Compound: 
   If: 
-    BinaryOp: &&
-      BinaryOp: ==
-        BinaryOp: %
-          ID: x
-          ID: i
-        Constant: int, 0
-      BinaryOp: ==
-        BinaryOp: %
-          ID: y
-          ID: i
-        Constant: int, 0
+    BinaryOp: !=
+      ID: hello
+      ID: the_world
     Compound: 
-      Break: 
+      FuncCall: 
+        ID: exit
