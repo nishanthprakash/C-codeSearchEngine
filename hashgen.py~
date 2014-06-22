@@ -20,8 +20,10 @@ import pickle
 if os.path.exists('cpindices.obj'):
 	picklefile = open('cpindices.obj', 'rw') 
 	cpdic = pickle.load(picklefile) 
+	cpdic_exists=true
 else:
 	picklefile = open('cpindices.obj', 'w')
+	cpdic_exists=false
 
 StudentID = str(sys.argv[1])
 Studentfile = str(sys.argv[2])
@@ -35,7 +37,7 @@ orig_stdout = sys.stdout
 f = file('aststring.txt', 'w')
 sys.stdout = f
 
-ast.show(buf=sys.stdout)
+ast.show(buf=sys.stdout) 	# pretty prints AST to the file aststring.txt 
 
 sys.stdout = orig_stdout
 f.close()
@@ -57,8 +59,9 @@ f.close()
 
 
 #---we build our own tree as the the AST object doesnt help to postorder traverse----
-
+#
 #---------- Tree representation---------------------
+
 class Node(object):
     def __init__(self, title):
         self.title = title
@@ -70,6 +73,7 @@ class Node(object):
         child.parent = self
 
 # -----------------Node insertion-------------------
+
 class Inserter(object):
     def __init__(self, node, depth = 0):
         self.node = node
@@ -96,20 +100,11 @@ class Inserter(object):
 with open(r'aststring.txt', 'r') as f1:   
     tree = Node(f1.readline().rstrip('\n'))
     inserter = Inserter(tree)
-#    print(f4.readline())    	
+   	
     for line in f1:
-#	print(line.rstrip('\n'))
-#	print("haha")
         line = line.rstrip('\n')
-#	print(line)
-        # note there's a bug with your original tab parsing code:
-        # it would count all tabs in the string, not just the ones
-        # at the beginning
         s = re.match('[ ]*', line).group(0).count(' ')/2
         title = line[s:]
-#	title = title.strip
-#	print(title)
-#	print(s)
 	if(title!=''):
 	        inserter(title, s)
 
@@ -140,7 +135,9 @@ for i in postlist:
 
 #print(hplist)
 #print("-----------------------------------------------------------")
+
 #--------------------H(A) of prefixes and prefixtree------------------------------
+
 prehplist=list()		# prehplist is the H(A) hash of prefixes of hash of post list
 prepostlist=list()		# prepostlist is the prefix tree of postlist
 PRIME=3
@@ -175,8 +172,9 @@ while j < len(hplist):
 #print(hashco)
 
 #------------------collapse hashco into a dictionary of codephrases--------------------
+if cpdic_exists != true:
+	cpdic=dict()
 
-cpdic=dict()
 for i in hashco:
 	if cpdic.has_key(hex(i)):
 		cpdic[hex(i)].add(StudentID)
