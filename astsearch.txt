@@ -1,0 +1,15 @@
+Compound: 
+  If: 
+    BinaryOp: &&
+      BinaryOp: ==
+        BinaryOp: %
+          ID: x
+          ID: i
+        Constant: int, 0
+      BinaryOp: ==
+        BinaryOp: %
+          ID: y
+          ID: i
+        Constant: int, 0
+    Compound: 
+      Break: 

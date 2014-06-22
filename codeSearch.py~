@@ -1,5 +1,4 @@
 #------------------------------------START-----------------------------------------
-
 from __future__ import print_function
 import sys, re, os
 from pycparser import c_parser, c_ast
@@ -15,16 +14,20 @@ else:
 
 Searchfile = str(sys.argv[1])
 
-text = open(Searchfile, 'r').read()
+text1 = open(Searchfile, 'r').read()
+
+text = "checkerfunc(){ " + text1 + " }"
 
 parser = c_parser.CParser()
 ast = parser.parse(text, filename='<none>')
 
 orig_stdout = sys.stdout
-f = file('aststring.txt', 'w')
+f = file('astsearch.txt', 'w')
 sys.stdout = f
 
-ast.show(buf=sys.stdout) 	# pretty prints AST to the file aststring.txt 
+#ast.show(buf=sys.stdout) 	# pretty prints AST to the file aststring.txt 
+
+ast.ext[0].body.show(buf=sys.stdout)
 
 sys.stdout = orig_stdout
 f.close()
@@ -120,13 +123,16 @@ for i in postlist:
 
 PRIME=3
 i=0
+codehash=0
 num_nodes=len(hplist)
+print("Computing hash of code")
 while i < num_nodes:
 	codehash = codehash + pow(PRIME, num_nodes-i-1)*(int(hplist[i],16))
+	print(str(i) + " of " + str(num_nodes) + " done")
+	i=i+1
 
 codehash = codehash + pow(PRIME, num_nodes)
-
-
+print(codehash)
 
 #------------------Find this hash in dictionary of codephrases--------------------
 
