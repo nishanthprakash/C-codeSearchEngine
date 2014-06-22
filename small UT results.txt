@@ -1,0 +1,236 @@
+nishanth@nishanth-Inspiron-1564:~/AM code search engine/v2$ python cleaner.py 
+nishanth@nishanth-Inspiron-1564:~/AM code search engine/v2$ python xlreader.py 
+nishanth@nishanth-Inspiron-1564:~/AM code search engine/v2$ dos2unix codedata/*
+dos2unix: converting file codedata/11570058937597.c to Unix format ...
+dos2unix: converting file codedata/11570058970337.c to Unix format ...
+nishanth@nishanth-Inspiron-1564:~/AM code search engine/v2$ python parse_checker.py files 
+['11570058937597 codedata/11570058937597.c', '11570058970337 codedata/11570058970337.c', '']
+Oh there's a syntax error in this code
+FileAST: 
+  FuncDef: 
+    Decl: writePatternNumber, [], [], []
+      FuncDecl: 
+        ParamList: 
+          Decl: n, [], [], []
+            TypeDecl: n, []
+              IdentifierType: ['int']
+        TypeDecl: writePatternNumber, []
+          IdentifierType: ['void']
+    Compound: 
+      Decl: t, [], [], []
+        TypeDecl: t, []
+          IdentifierType: ['int']
+      Decl: a, [], [], []
+        TypeDecl: a, []
+          IdentifierType: ['int']
+      Decl: p, [], [], []
+        ArrayDecl: 
+          TypeDecl: p, []
+            IdentifierType: ['int']
+          Constant: int, 20
+        InitList: 
+          Constant: int, 0
+      Decl: p1, [], [], []
+        ArrayDecl: 
+          TypeDecl: p1, []
+            IdentifierType: ['int']
+          Constant: int, 20
+        InitList: 
+          Constant: int, 0
+      For: 
+        DeclList: 
+          Decl: i, [], [], []
+            TypeDecl: i, []
+              IdentifierType: ['int']
+            Constant: int, 1
+        BinaryOp: <=
+          ID: i
+          ID: n
+        UnaryOp: p++
+          ID: i
+        Compound: 
+          If: 
+            BinaryOp: ==
+              BinaryOp: %
+                ID: i
+                Constant: int, 2
+              Constant: int, 1
+            Compound: 
+              Assignment: =
+                ID: t
+                ID: i
+              For: 
+                Assignment: =
+                  ID: a
+                  Constant: int, 1
+                BinaryOp: &&
+                  BinaryOp: <=
+                    ID: a
+                    ID: n
+                  BinaryOp: <=
+                    ID: t
+                    ID: n
+                UnaryOp: p++
+                  ID: a
+                Compound: 
+                  Assignment: =
+                    ArrayRef: 
+                      ID: p
+                      ID: a
+                    ID: t
+                  Assignment: =
+                    ID: t
+                    BinaryOp: +
+                      ID: t
+                      Constant: int, 1
+              For: 
+                DeclList: 
+                  Decl: l, [], [], []
+                    TypeDecl: l, []
+                      IdentifierType: ['int']
+                    Constant: int, 1
+                BinaryOp: <=
+                  ID: a
+                  BinaryOp: +
+                    ID: n
+                    Constant: int, 1
+                ExprList: 
+                  UnaryOp: p++
+                    ID: a
+                  UnaryOp: p++
+                    ID: l
+                Compound: 
+                  Assignment: =
+                    ArrayRef: 
+                      ID: p
+                      ID: a
+                    ID: l
+              FuncCall: 
+                ID: printf
+                ExprList: 
+                  Constant: string, "\n"
+              For: 
+                DeclList: 
+                  Decl: m, [], [], []
+                    TypeDecl: m, []
+                      IdentifierType: ['int']
+                    Constant: int, 1
+                BinaryOp: <=
+                  ID: m
+                  BinaryOp: +
+                    ID: n
+                    Constant: int, 1
+                UnaryOp: p++
+                  ID: m
+                FuncCall: 
+                  ID: printf
+                  ExprList: 
+                    Constant: string, "%d"
+                    ArrayRef: 
+                      ID: p
+                      ID: m
+            Compound: 
+              Decl: temp, [], [], []
+                TypeDecl: temp, []
+                  IdentifierType: ['int']
+              Assignment: =
+                ArrayRef: 
+                  ID: p1
+                  Constant: int, 1
+                ID: i
+              For: 
+                DeclList: 
+                  Decl: j, [], [], []
+                    TypeDecl: j, []
+                      IdentifierType: ['int']
+                    BinaryOp: +
+                      ID: n
+                      Constant: int, 1
+                  Decl: k, [], [], []
+                    TypeDecl: k, []
+                      IdentifierType: ['int']
+                    Constant: int, 2
+                BinaryOp: >=
+                  ID: j
+                  Constant: int, 2
+                ExprList: 
+                  UnaryOp: p--
+                    ID: j
+                  UnaryOp: p++
+                    ID: k
+                Compound: 
+                  Assignment: =
+                    ArrayRef: 
+                      ID: p1
+                      ID: k
+                    ArrayRef: 
+                      ID: p
+                      ID: j
+              FuncCall: 
+                ID: printf
+                ExprList: 
+                  Constant: string, "\n"
+              For: 
+                DeclList: 
+                  Decl: l, [], [], []
+                    TypeDecl: l, []
+                      IdentifierType: ['int']
+                    Constant: int, 1
+                BinaryOp: <=
+                  ID: l
+                  BinaryOp: +
+                    ID: n
+                    Constant: int, 1
+                UnaryOp: p++
+                  ID: l
+                FuncCall: 
+                  ID: printf
+                  ExprList: 
+                    Constant: string, "%d"
+                    ArrayRef: 
+                      ID: p1
+                      ID: l
+  FuncDef: 
+    Decl: main, [], [], []
+      FuncDecl: 
+        TypeDecl: main, []
+          IdentifierType: ['int']
+    Compound: 
+      Decl: n, [], [], []
+        TypeDecl: n, []
+          IdentifierType: ['int']
+      FuncCall: 
+        ID: printf
+        ExprList: 
+          Constant: string, "Enter the value of N: "
+      FuncCall: 
+        ID: writePatternNumber
+        ExprList: 
+          ID: n
+      Return: 
+        Constant: int, 0
+nishanth@nishanth-Inspiron-1564:~/AM code search engine/v2$ python dataFeeder.py files 
+Oh there's a syntax error in this code
+nishanth@nishanth-Inspiron-1564:~/AM code search engine/v2$ python codeSearch.py test_codestub.c
+Compound: 
+  Assignment: =
+    ArrayRef: 
+      ID: p1
+      ID: k
+    ArrayRef: 
+      ID: p
+      ID: j
+Computing hash of code
+0 of 8 done
+1 of 8 done
+2 of 8 done
+3 of 8 done
+4 of 8 done
+5 of 8 done
+6 of 8 done
+7 of 8 done
+3131791500936239465690682897141594133282353997375647
+This piece of code is found in submissione by the following
+set(['11570058970337'])
+nishanth@nishanth-Inspiron-1564:~/AM code search engine/v2$ python cleaner.py 
+
