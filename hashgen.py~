@@ -1,5 +1,5 @@
 
-"""hashgen.py: This is the codephrase hash generator for a piece of code"""
+"""hashgen.py: This is the codephrase hash generator for a piece of C code fed by the dataFeeder"""
 
 __author__ = "Nishanth Prakash"
 __copyright__ = "Copyright 2014, HackathonAM"
@@ -10,7 +10,7 @@ __maintainer__ = "Nishanth"
 __email__ = "nishanthprakash20@gmail.com"
 __status__ = "Production"
 
-#-----------------------------------------------------------------------------
+#------------------------------------START-----------------------------------------
 
 from __future__ import print_function
 import sys, re, os

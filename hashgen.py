@@ -1,5 +1,5 @@
 
-"""hashgen.py: This is the codephrase hash generator for a piece of code"""
+"""hashgen.py: This is the codephrase hash generator for a piece of C code fed by the dataFeeder"""
 
 __author__ = "Nishanth Prakash"
 __copyright__ = "Copyright 2014, HackathonAM"
@@ -96,20 +96,11 @@ class Inserter(object):
 with open(r'aststring.txt', 'r') as f1:   
     tree = Node(f1.readline().rstrip('\n'))
     inserter = Inserter(tree)
-#    print(f4.readline())    	
+   	
     for line in f1:
-#	print(line.rstrip('\n'))
-#	print("haha")
         line = line.rstrip('\n')
-#	print(line)
-        # note there's a bug with your original tab parsing code:
-        # it would count all tabs in the string, not just the ones
-        # at the beginning
         s = re.match('[ ]*', line).group(0).count(' ')/2
         title = line[s:]
-#	title = title.strip
-#	print(title)
-#	print(s)
 	if(title!=''):
 	        inserter(title, s)
 
