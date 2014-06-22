@@ -1,4 +1,0 @@
-
-if (hello!=the_world){
-	exit();
-}
