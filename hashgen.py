@@ -11,19 +11,9 @@ __email__ = "nishanthprakash20@gmail.com"
 __status__ = "Production"
 
 #------------------------------------START-----------------------------------------
-
-from __future__ import print_function
+#from __future__ import print_function
 import sys, re, os
 from pycparser import c_parser, c_ast
-
-import pickle 
-if os.path.exists('cpindices.obj'):
-	picklefile = open('cpindices.obj', 'rw') 
-	cpdic = pickle.load(picklefile) 
-	cpdic_exists=true
-else:
-	picklefile = open('cpindices.obj', 'w')
-	cpdic_exists=false
 
 StudentID = str(sys.argv[1])
 Studentfile = str(sys.argv[2])
@@ -31,7 +21,11 @@ Studentfile = str(sys.argv[2])
 text = open(Studentfile, 'r').read()
 
 parser = c_parser.CParser()
+#try :
 ast = parser.parse(text, filename='<none>')
+#except:
+#	print("Oh there's a syntax error in this code")
+#	sys.exit()
 
 orig_stdout = sys.stdout
 f = file('aststring.txt', 'w')
@@ -172,7 +166,16 @@ while j < len(hplist):
 #print(hashco)
 
 #------------------collapse hashco into a dictionary of codephrases--------------------
-if cpdic_exists != true:
+import pickle 
+if os.path.exists('cpindices.obj'):
+	picklefile = open('cpindices.obj', 'rw') 
+	cpdic = pickle.load(picklefile) 
+	cpdic_exists=True
+else:
+	picklefile = open('cpindices.obj', 'w')
+	cpdic_exists=False
+
+if cpdic_exists != True:
 	cpdic=dict()
 
 for i in hashco:

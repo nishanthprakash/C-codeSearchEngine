@@ -3,13 +3,6 @@ from __future__ import print_function
 import sys, re, os
 from pycparser import c_parser, c_ast
 
-import pickle 
-if os.path.exists('cpindices.obj'):
-	picklefile = open('cpindices.obj', 'r') 
-	cpdic = pickle.load(picklefile) 
-else:
-	print("Oh you haven't trained the search on any code. Lame!")
-	sys.exit()
 
 
 Searchfile = str(sys.argv[1])
@@ -135,6 +128,15 @@ codehash = codehash + pow(PRIME, num_nodes)
 print(codehash)
 
 #------------------Find this hash in dictionary of codephrases--------------------
+
+import pickle 
+if os.path.exists('cpindices.obj'):
+	picklefile = open('cpindices.obj', 'r') 
+	cpdic = pickle.load(picklefile) 
+else:
+	print("Oh you haven't trained the search on any code. Lame!")
+	sys.exit()
+
 
 if cpdic.has_key(hex(codehash)):
 	print("This piece of code is found in submissione by the following")
