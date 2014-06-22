@@ -102,6 +102,9 @@ with open(r'aststring.txt', 'r') as f1:
 	if(title!=''):
 	        inserter(title, s)
 
+
+os.system("rm aststring.txt 2> /dev/null")	#we dont need the aststring.txt file now
+
 #-------------------------postorder list of nodes-----------------
 
 postlist=list()

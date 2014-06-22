@@ -92,6 +92,7 @@ with open(r'astsearch.txt', 'r') as f1:
 	if(title!=''):
 	        inserter(title, s)
 
+os.system("rm astsearch.txt 2> /dev/null")	#we dont need the astsearch.txt file now
 #-------------------------postorder list of nodes-----------------
 
 postlist=list()
