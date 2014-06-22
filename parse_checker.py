@@ -22,6 +22,6 @@ for record in sfList:
 		print("Oh there's a syntax error in this code")
 		continue
 	
-	
+	print("----------------------------------------------------------")
 	ast.show()  
 

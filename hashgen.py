@@ -171,15 +171,18 @@ while j < len(hplist):
 #------------------collapse hashco into a dictionary of codephrases--------------------
 import pickle 
 if os.path.exists('cpindices.obj'):
-	picklefile = open('cpindices.obj', 'rw') 
+	picklefile = open('cpindices.obj', 'r') 
 	cpdic = pickle.load(picklefile) 
-	cpdic_exists=True
+#	cpdic_exists=True
+#	print(cpdic_exists)
 else:
-	picklefile = open('cpindices.obj', 'w')
-	cpdic_exists=False
+#	picklefile = open('cpindices.obj', 'w')
+#	cpdic_exists=False
 
-if cpdic_exists != True:
+#if cpdic_exists != True:
 	cpdic=dict()
+
+#picklefile.close()
 
 for i in hashco:
 	if cpdic.has_key(hex(i)):
@@ -190,10 +193,13 @@ for i in hashco:
 
 #print(len(prehplist)) # =n
 #print(len(hashco)) # =n*(n+1)/2  -----verified!
+
 #print(len(cpdic)) # collapsed no. is less than total
 
 #---------------------pickle out the code phrase dict-------------------------------
 
+picklefile = open('cpindices.obj', 'w') 
 pickle.dump(cpdic, picklefile)
+picklefile.close()
 
 #---------------------------EOF----------------------------------------------------
