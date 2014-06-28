@@ -1,19 +1,22 @@
 
-"""hashgen.py: This is the codephrase hash generator for a piece of C code fed by the dataFeeder"""
-
-__author__ = "Nishanth Prakash"
-__copyright__ = "Copyright 2014, HackathonAM"
-__credits__ = ["some stanford guys who wrote a paper"]
-__license__ = "None"
-__version__ = "1.0.1"
-__maintainer__ = "Nishanth"
-__email__ = "nishanthprakash20@gmail.com"
-__status__ = "Production"
 
 #------------------------------------START-----------------------------------------
-#from __future__ import print_function
+
 import sys, re, os
 from pycparser import c_parser, c_ast
+
+postlist = list()
+
+def postorder(node):
+	nodestr = node.__class__.__name__+ ': '
+	vlist = [getattr(node, n) for n in node.attr_names]
+	attrstr = ', '.join('%s' % v for v in vlist)
+	nodestr=nodestr + attrstr
+	
+	for (child_name, child) in node.children():
+		postorder(child)
+	postlist.append(nodestr)
+
 
 StudentID = str(sys.argv[1])
 Studentfile = str(sys.argv[2])
@@ -27,102 +30,9 @@ except:
 	print("Oh there's a syntax error in this code")
 	sys.exit()
 
-orig_stdout = sys.stdout
-f = file('aststring.txt', 'w')
-sys.stdout = f
-
-ast.show(buf=sys.stdout) 	# pretty prints AST to the file aststring.txt 
-
-sys.stdout = orig_stdout
-f.close()
-#----------------------------#anonymizing identifiers.....worry about this later--------------
-#f1 = open('aststring.txt','r').read()
-#f2 = re.sub('ID.*', 'ID', f1)	
-#line=f2.split('\n')
-
-#orig_stdout = sys.stdout
-#f3 = file('anonast.txt', 'w')
-#sys.stdout = f3
-
-#print(f2) 
-
-#sys.stdout = orig_stdout
-#f3.close()
-
-#---------------------------------------------------------------------------------------
-
-
-#---we build our own tree as the the AST object doesnt help to postorder traverse----
-#
-#---------- Tree representation---------------------
-
-class Node(object):
-    def __init__(self, title):
-        self.title = title
-        self.parent = None
-        self.children = []
-
-    def add(self, child):
-        self.children.append(child)
-        child.parent = self
-
-# -----------------Node insertion-------------------
-
-class Inserter(object):
-    def __init__(self, node, depth = 0):
-        self.node = node
-        self.depth = depth
-
-    def __call__(self, title, depth):
-        newNode = Node(title)
-        if (depth > self.depth):
-            self.node.add(newNode)
-            self.depth = depth
-        elif (depth == self.depth):
-            self.node.parent.add(newNode)
-        else:
-            parent = self.node.parent
-            for i in xrange(0, self.depth - depth):
-                parent = parent.parent
-            parent.add(newNode)
-            self.depth = depth
-
-        self.node = newNode
-
-# ----------- File to tree--------------------------------
-
-with open(r'aststring.txt', 'r') as f1:   
-    tree = Node(f1.readline().rstrip('\n'))
-    inserter = Inserter(tree)
-   	
-    for line in f1:
-        line = line.rstrip('\n')
-        s = re.match('[ ]*', line).group(0).count(' ')/2
-        title = line[s:]
-	if(title!=''):
-	        inserter(title, s)
-
-
-os.system("rm aststring.txt 2> /dev/null")	#we dont need the aststring.txt file now
-
-#-------------------------postorder list of nodes-----------------
-
-postlist=list()
-def print_tree(node, depth = 0):
-    for child in node.children:
-        print_tree(child, depth + 1)
-    #print (node.title.strip())   # A Postorder print with levels mentioned
-    postlist.append(node.title.strip())
-print_tree(tree)
-
-#print(postlist)
-#print(len(postlist))
-
-
-# compute sizes of subtree later...its not used in hashing anyway search and then traverse if found to find no. of nodes in a subtree
-
-
-
+#ast.show()
+postorder(ast)
+#print("\n".join(List))
 #----------------------SHA1 HASH of nodes-----------------------------------------------
 
 import hashlib
@@ -130,7 +40,8 @@ hplist=list() 			# hplist is the hash of postlist
 for i in postlist:
 	hplist.append(hashlib.sha1(i).hexdigest())
 
-#print(hplist)
+#for i in hplist:
+#	print(str(int(i,16)))
 #print("-----------------------------------------------------------")
 
 #--------------------H(A) of prefixes and prefixtree------------------------------
@@ -146,27 +57,26 @@ while i <= len(hplist)-1:
 	prepostlist.append(prepostlist[i-1]+ " " +postlist[i])
 	i=i+1
 
+#print(len(prehplist))
 #print(prehplist)
-#print(prepostlist)
+print("\n".join(prepostlist))
 
 #--------------------------hash of all code phrases in the AST--------------------------
-import itertools
+#import itertools
 j=0
 alco=list()
 hashco=list()
 while j < len(hplist):
 	k=j
 	while k < len(hplist): 
-		alco.append(' '.join(list(itertools.islice(prepostlist,j,k+1))))
+		#alco.append(' '.join(itertools.islice(prepostlist,j,k+1)))
 		if j-1 >= 0 :
-			hashco.append(prehplist[k] - pow(PRIME,k-j+1)*(prehplist[j-1]-1))
+			hashco.append(prehplist[k] - pow(PRIME,k-j+1)*(prehplist[j-1]-1)) #hashes of a{j...k}
 		else:
 			hashco.append(prehplist[k])
 		k=k+1
 	j=j+1
 
-#print(alco)
-#print(hashco)
 
 #------------------collapse hashco into a dictionary of codephrases--------------------
 import pickle 

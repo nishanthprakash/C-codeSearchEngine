@@ -2,16 +2,18 @@ import xlrd
 import os.path
 import pycparser
 import re
+import sys
 
-NUMBER_OF_SUBMISSIONS = 4 #33 in the actual spread sheet
+NUMBER_OF_SUBMISSIONS = int(sys.argv[2]) #32 in the actual spread sheet
+xlcodes=sys.argv[1]
 
-wb = xlrd.open_workbook('codes.xlsx')
+wb = xlrd.open_workbook(xlcodes) #codes.xlsx
 wb.sheet_names()
 sh = wb.sheet_by_index(0)
 i = 1
 
 with open("files", "a") as filelist:
-    while i< NUMBER_OF_SUBMISSIONS: 	
+    while i<= NUMBER_OF_SUBMISSIONS: 	
 	
         studentID = int(sh.cell(i,0).value)
         code = str(sh.cell(i,1).value)

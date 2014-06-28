@@ -1,8 +1,18 @@
 #------------------------------------START-----------------------------------------
-from __future__ import print_function
 import sys, re, os
 from pycparser import c_parser, c_ast
 
+postlist = list()
+
+def postorder(node):
+	nodestr = node.__class__.__name__+ ': '
+	vlist = [getattr(node, n) for n in node.attr_names]
+	attrstr = ', '.join('%s' % v for v in vlist)
+	nodestr=nodestr + attrstr
+	
+	for (child_name, child) in node.children():
+		postorder(child)
+	postlist.append(nodestr)
 
 
 Searchfile = str(sys.argv[1])
@@ -12,81 +22,16 @@ text1 = open(Searchfile, 'r').read()
 text = "checkerfunc(){ " + text1 + " }"
 
 parser = c_parser.CParser()
-ast = parser.parse(text, filename='<none>')
+try :
+	ast = parser.parse(text, filename='<none>')
+except:
+	print("Oh there's a syntax error in this code")
+	sys.exit()
 
-orig_stdout = sys.stdout
-f = file('astsearch.txt', 'w')
-sys.stdout = f
 
-#ast.show(buf=sys.stdout) 	# pretty prints AST to the file aststring.txt 
-
-ast.ext[0].body.show(buf=sys.stdout)
-
-sys.stdout = orig_stdout
-f.close()
-
+postorder(ast.ext[0].body)
+del postlist[-1]
 ast.ext[0].body.show()
-
-#---we build our own tree as the the AST object doesnt help to postorder traverse----
-#
-#---------- Tree representation---------------------
-
-class Node(object):
-    def __init__(self, title):
-        self.title = title
-        self.parent = None
-        self.children = []
-
-    def add(self, child):
-        self.children.append(child)
-        child.parent = self
-
-# -----------------Node insertion-------------------
-
-class Inserter(object):
-    def __init__(self, node, depth = 0):
-        self.node = node
-        self.depth = depth
-
-    def __call__(self, title, depth):
-        newNode = Node(title)
-        if (depth > self.depth):
-            self.node.add(newNode)
-            self.depth = depth
-        elif (depth == self.depth):
-            self.node.parent.add(newNode)
-        else:
-            parent = self.node.parent
-            for i in xrange(0, self.depth - depth):
-                parent = parent.parent
-            parent.add(newNode)
-            self.depth = depth
-
-        self.node = newNode
-
-# ----------- File to tree--------------------------------
-
-with open(r'astsearch.txt', 'r') as f1:   
-    tree = Node(f1.readline().rstrip('\n'))
-    inserter = Inserter(tree)
-   	
-    for line in f1:
-        line = line.rstrip('\n')
-        s = re.match('[ ]*', line).group(0).count(' ')/2
-        title = line[s:]
-	if(title!=''):
-	        inserter(title, s)
-
-os.system("rm astsearch.txt 2> /dev/null")	#we dont need the astsearch.txt file now
-#-------------------------postorder list of nodes-----------------
-
-postlist=list()
-def print_tree(node, depth = 0):
-    for child in node.children:
-        print_tree(child, depth + 1)
-    #print (node.title.strip())   # A Postorder print with levels mentioned
-    postlist.append(node.title.strip())
-print_tree(tree)
 
 #----------------------SHA1 HASH of nodes-----------------------------------------------
 

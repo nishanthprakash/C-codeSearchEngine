@@ -25,26 +25,30 @@ IMPORTANT:
 
 	2. Use the utility dos2unix to remove carriage returns etc. which will be considered syntax errors in the parser.
 
-USAGE:
+	3. This system can be used as a scalable indexer to incrementally add indices of codephrases of codes using hashgen.py
+		$ python hashgen.py <studentID> <code_file>
 
-STEPS:
+	This adds the indices of the new code_file to the stored indices
+
+USAGE STEPS:
 
 INDEX GENERATION:
 
-	1. Run the xlreader.py which outputs filelist in files
+	1. Run the xlreader.py which outputs filelist in 'files'
+			$ python xlreader.py <code_excel_sheet> <number_of_submissions>
 
 	1a. Run the utility 'dos2unix' for file conversions on all the codes extracted in the folder codedata
-
+			$ dos2unix codedata/*
 	1b. Run parse_checker.py to verify that all the codedata now can be parsed properly (OPTIONAL)
-
+			$ python parse_checker.py files
 	2. Feed this to dataFeeder.py as arguement and run dataFeeder which feeds data to hashgen.py
-
+			$ python dataFeeder.py files
 SEARCH:
 	
 	Give your code stub file as arg to codeSearch.py and run it. It will look for a match
-
+			$ python codeSearch.py test_codestub.c
 CLEANING:
 
 	Run cleaner.py to clean all generated code on finishing
-
+			$ python cleaner.py
 
