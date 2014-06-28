@@ -1,8 +1,0 @@
-Compound: 
-  If: 
-    BinaryOp: !=
-      ID: hello
-      ID: the_world
-    Compound: 
-      FuncCall: 
-        ID: exit
