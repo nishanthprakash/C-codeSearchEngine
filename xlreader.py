@@ -11,6 +11,8 @@ wb = xlrd.open_workbook(xlcodes) #codes.xlsx
 wb.sheet_names()
 sh = wb.sheet_by_index(0)
 i = 1
+if not os.path.exists('codedata/'):
+	os.system("mkdir codedata")
 
 with open("files", "a") as filelist:
     while i<= NUMBER_OF_SUBMISSIONS: 	
