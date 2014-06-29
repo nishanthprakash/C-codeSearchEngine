@@ -1,0 +1,129 @@
+nishanth@nishanth-Inspiron-1564:~/AM code search engine/v2$ python cleaner.py nishanth@nishanth-Inspiron-1564:~/AM code search engine/v2$ python xlreader.py codes.xlsx 32nishanth@nishanth-Inspiron-1564:~/AM code search engine/v2$ dos2unix codedata/*dos2unix: converting file codedata/11570058937597.c to Unix format ...
+dos2unix: converting file codedata/11570058970337.c to Unix format ...
+dos2unix: converting file codedata/11570058979706.c to Unix format ...
+dos2unix: converting file codedata/11570058981302.c to Unix format ...
+dos2unix: converting file codedata/11570058986509.c to Unix format ...
+dos2unix: converting file codedata/11570059107980.c to Unix format ...
+dos2unix: converting file codedata/11570059127691.c to Unix format ...
+dos2unix: converting file codedata/11570059328614.c to Unix format ...
+dos2unix: converting file codedata/11570059445124.c to Unix format ...
+dos2unix: converting file codedata/11570059763384.c to Unix format ...
+dos2unix: converting file codedata/11570059908250.c to Unix format ...
+dos2unix: converting file codedata/11570060667510.c to Unix format ...
+dos2unix: converting file codedata/11570061101404.c to Unix format ...
+dos2unix: converting file codedata/11570061371791.c to Unix format ...
+dos2unix: converting file codedata/11570061544703.c to Unix format ...
+dos2unix: converting file codedata/11570061980329.c to Unix format ...
+dos2unix: converting file codedata/11570066470392.c to Unix format ...
+dos2unix: converting file codedata/11570066551019.c to Unix format ...
+dos2unix: converting file codedata/11570066661035.c to Unix format ...
+dos2unix: converting file codedata/11570066803674.c to Unix format ...
+dos2unix: converting file codedata/11570066818597.c to Unix format ...
+dos2unix: converting file codedata/11570069250391.c to Unix format ...
+dos2unix: converting file codedata/11570069658075.c to Unix format ...
+dos2unix: converting file codedata/11570072319971.c to Unix format ...
+dos2unix: converting file codedata/11570072588098.c to Unix format ...
+dos2unix: converting file codedata/11570078109157.c to Unix format ...
+dos2unix: converting file codedata/11570078499719.c to Unix format ...
+dos2unix: converting file codedata/11570078523248.c to Unix format ...
+dos2unix: converting file codedata/11570078634851.c to Unix format ...
+dos2unix: converting file codedata/11570078639886.c to Unix format ...
+nishanth@nishanth-Inspiron-1564:~/AM code search engine/v2$ dos2unix testdata/*dos2unix: converting file testdata/11570078794488.c to Unix format ...
+dos2unix: converting file testdata/11570078964013.c to Unix format ...
+nishanth@nishanth-Inspiron-1564:~/AM code search engine/v2$ python dataFeeder.py files['11570058937597', 'codedata/11570058937597.c']
+--------------- Processing code 1 -------------------
+Oh there's a syntax error in this code, hence will not be processed
+['11570058970337', 'codedata/11570058970337.c']
+--------------- Processing code 2 -------------------
+['11570058979706', 'codedata/11570058979706.c']
+--------------- Processing code 3 -------------------
+['11570058981302', 'codedata/11570058981302.c']
+--------------- Processing code 4 -------------------
+['11570058986509', 'codedata/11570058986509.c']
+--------------- Processing code 5 -------------------
+['11570059107980', 'codedata/11570059107980.c']
+--------------- Processing code 6 -------------------
+['11570059127691', 'codedata/11570059127691.c']
+--------------- Processing code 7 -------------------
+['11570059328614', 'codedata/11570059328614.c']
+--------------- Processing code 8 -------------------
+['11570059445124', 'codedata/11570059445124.c']
+--------------- Processing code 9 -------------------
+['11570059763384', 'codedata/11570059763384.c']
+--------------- Processing code 10 -------------------
+['11570059908250', 'codedata/11570059908250.c']
+--------------- Processing code 11 -------------------
+['11570060667510', 'codedata/11570060667510.c']
+--------------- Processing code 12 -------------------
+['11570061101404', 'codedata/11570061101404.c']
+--------------- Processing code 13 -------------------
+['11570061371791', 'codedata/11570061371791.c']
+--------------- Processing code 14 -------------------
+['11570061544703', 'codedata/11570061544703.c']
+--------------- Processing code 15 -------------------
+['11570061980329', 'codedata/11570061980329.c']
+--------------- Processing code 16 -------------------
+['11570066470392', 'codedata/11570066470392.c']
+--------------- Processing code 17 -------------------
+['11570066551019', 'codedata/11570066551019.c']
+--------------- Processing code 18 -------------------
+['11570066661035', 'codedata/11570066661035.c']
+--------------- Processing code 19 -------------------
+['11570066803674', 'codedata/11570066803674.c']
+--------------- Processing code 20 -------------------
+['11570066818597', 'codedata/11570066818597.c']
+--------------- Processing code 21 -------------------
+['11570069250391', 'codedata/11570069250391.c']
+--------------- Processing code 22 -------------------
+['11570069658075', 'codedata/11570069658075.c']
+--------------- Processing code 23 -------------------
+['11570072319971', 'codedata/11570072319971.c']
+--------------- Processing code 24 -------------------
+['11570072588098', 'codedata/11570072588098.c']
+--------------- Processing code 25 -------------------
+['11570078109157', 'codedata/11570078109157.c']
+--------------- Processing code 26 -------------------
+['11570078499719', 'codedata/11570078499719.c']
+--------------- Processing code 27 -------------------
+['11570078523248', 'codedata/11570078523248.c']
+--------------- Processing code 28 -------------------
+['11570078634851', 'codedata/11570078634851.c']
+--------------- Processing code 29 -------------------
+['11570078639886', 'codedata/11570078639886.c']
+--------------- Processing code 30 -------------------
+['11570078794488', 'testdata/11570078794488.c']
+use testdata/11570078794488.cas test data
+['11570078964013', 'testdata/11570078964013.c']
+use testdata/11570078964013.cas test data
+nishanth@nishanth-Inspiron-1564:~/AM code search engine/v2$ python codeSearch.py test_codestub.c
+Compound: 
+  Decl: n, [], [], []
+    TypeDecl: n, []
+      IdentifierType: ['int']
+  FuncCall: 
+    ID: printf
+    ExprList: 
+      Constant: string, "Enter the value of N: "
+Computing hash of code
+0 of 7 done
+1 of 7 done
+2 of 7 done
+3 of 7 done
+4 of 7 done
+5 of 7 done
+6 of 7 done
+861354660434767731810422643726668406349005363553784
+This piece of code is found in submissione by the following
+set(['11570058981302', '11570078639886', '11570059328614', '11570060667510', '11570069250391', '11570059763384', '11570072319971', '11570059107980', '11570059127691', '11570061980329', '11570072588098', '11570066818597', '11570066661035', '11570059445124', '11570058986509', '11570066551019', '11570066470392', '11570061544703', '11570061371791', '11570066803674', '11570058970337', '11570078634851', '11570078109157', '11570058979706', '11570078523248', '11570059908250', '11570078499719', '11570061101404', '11570069658075'])
+nishanth@nishanth-Inspiron-1564:~/AM code search engine/v2$ python test_validate.py 11570078794488 'testdata/11570078794488.c'
+----done with prefixes--------
+----done with hash of all phrases--------
+filling a sheet
+----writing results--------
+nishanth@nishanth-Inspiron-1564:~/AM code search engine/v2$ python test_validate.py 11570078964013 'testdata/11570078964013.c'
+----done with prefixes--------
+----done with hash of all phrases--------
+filling a sheet
+----writing results--------
+nishanth@nishanth-Inspiron-1564:~/AM code search engine/v2$ 
+

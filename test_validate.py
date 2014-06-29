@@ -103,6 +103,7 @@ sheetnum=0
 index=0
 SHEET_LIMIT = 65536
 cumindex=0
+print("filling a sheet")
 for codehash in hashco:
 	if index < SHEET_LIMIT:
 		if cpdic.has_key(hex(codehash)):
@@ -116,8 +117,9 @@ for codehash in hashco:
 			sheet.write(index,2,"----")
 
 		index += 1
-		print(str(cumindex+index))
+		#print(str(cumindex+index))
 	else:
+		print("filling another sheet")
 		sheetnum+=1
 		sheet = workbook.add_sheet('testresults' + str(sheetnum) + '_' +str(StudentID) )
 		cumindex += SHEET_LIMIT
@@ -133,7 +135,7 @@ for codehash in hashco:
 			sheet.write(index,2,"----")
 
 		index += 1
-		print(str(cumindex+index))
+		#print(str(cumindex+index))
 
 
 print("----writing results--------")

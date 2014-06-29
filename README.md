@@ -21,6 +21,8 @@ Contains 8 python scripts:
 	
 	7. test_validate.py - takes the last two of the codes read out of xlreader.py and uses them in validating the indices.
 
+	8. eclasses.py (TBD) - used to find equivalence classes and attempt classes
+
 IMPORTANT: 
 
 	1. The assumption is the codes given parse successfully, i.e. they are syntactically correct  (failing which this doesn't parse it or use it in the search engine).
