@@ -10,7 +10,11 @@ for record in sfList:
 	print(sf)
 	StudentID=sf[0]
 	File=sf[1]
-	run="python hashgen.py" + " " + StudentID + " " + File
-	print("--------------- Processing code " + str(i) + " -------------------" )	
-	os.system(run)
+	if "testdata" not in File:
+		run="python hashgen.py" + " " + StudentID + " " + File
+		print("--------------- Processing code " + str(i) + " -------------------" )	
+		os.system(run)
+	else:
+		print("use " + File + "as test data")		
+	
 	i += 1

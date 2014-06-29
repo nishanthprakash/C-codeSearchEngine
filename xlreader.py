@@ -11,8 +11,12 @@ wb = xlrd.open_workbook(xlcodes) #codes.xlsx
 wb.sheet_names()
 sh = wb.sheet_by_index(0)
 i = 1
+
+#----------------using the last two codes as test data------------------
 if not os.path.exists('codedata/'):
 	os.system("mkdir codedata")
+if not os.path.exists('testdata/'):
+	os.system("mkdir testdata")
 
 with open("files", "a") as filelist:
     while i<= NUMBER_OF_SUBMISSIONS: 	
@@ -46,8 +50,11 @@ with open("files", "a") as filelist:
 	for n in code2.split('\n'):
 		 if not n.startswith('#'):
 			toparsecode=toparsecode + n + "\n"
+
+	#------do a parse check and write to file only if parsable--------------------
+
 	#try :
-	#	parser1.parse(comment_remover(toparsecode))		#check! 
+	#	parser1.parse(toparsecode))		#check! 
 	#except:
 	#	i=i+1
 	#	codes_with_syntax_error += 1
@@ -58,10 +65,14 @@ with open("files", "a") as filelist:
 	#toparsecode=toparsecode.rstrip('\r\n')	# remove carriage returns 
 	
 	#-------------------------------------------------------------------------
-
-	with open( "codedata/"+ str(studentID) +".c", "a") as student_codefile:
-	        student_codefile.write(toparsecode + '\n')
-	filelist.write( str(studentID) + " " + "codedata/"+ str(studentID) + ".c" + '\n')
+	if i <= NUMBER_OF_SUBMISSIONS-2:
+		with open( "codedata/"+ str(studentID) +".c", "a") as student_codefile:
+		        student_codefile.write(toparsecode + '\n')
+		filelist.write( str(studentID) + " " + "codedata/"+ str(studentID) + ".c" + '\n')	
+	else:
+		with open( "testdata/"+ str(studentID) +".c", "a") as student_codefile:
+		        student_codefile.write(toparsecode + '\n')
+		filelist.write( str(studentID) + " " + "testdata/"+ str(studentID) + ".c" + '\n')	
         i += 1
 
 #print(codes_with_syntax_error)

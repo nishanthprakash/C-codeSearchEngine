@@ -27,7 +27,7 @@ parser = c_parser.CParser()
 try :
 	ast = parser.parse(text, filename='<none>')
 except:
-	print("Oh there's a syntax error in this code")
+	print("Oh there's a syntax error in this code, hence will not be processed")
 	sys.exit()
 
 #ast.show()
@@ -59,7 +59,7 @@ while i <= len(hplist)-1:
 
 #print(len(prehplist))
 #print(prehplist)
-print("\n".join(prepostlist))
+#print("\n".join(prepostlist))
 
 #--------------------------hash of all code phrases in the AST--------------------------
 #import itertools

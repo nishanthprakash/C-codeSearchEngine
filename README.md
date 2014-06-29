@@ -5,7 +5,7 @@ A semantic search engine to search for equivalent C codes.
 
 This engine is used to search for equivalent C-codes students might have written in the given data set of student code submissions and their corresponding IDs.
 
-Contains six python scripts:
+Contains 8 python scripts:
 	
 	1. xlreader.py - reads StudentIDs and their respective codes from an xl sheet (col1 StudentID, col2 corresponding code submitted) and extracts all the code into separate files in the folder codedata with file names as <studentID>.c and also makes a list of studentID and studentcodefiles in the file 'files'. Also note that if the codes are not compiler preprocessed codes, this script will remove preprocessor directives and strip all comments from them. 
 
@@ -17,7 +17,9 @@ Contains six python scripts:
 	
 	5. cleaner.py - cleans all generated data for fresh processing
 
-	5. parse_checker.py - does a final check if all the codedata generated parses properly.
+	6. parse_checker.py - does a final check if all the codedata generated parses properly.
+	
+	7. test_validate.py - takes the last two of the codes read out of xlreader.py and uses them in validating the indices.
 
 IMPORTANT: 
 
@@ -41,12 +43,22 @@ INDEX GENERATION:
 			$ dos2unix codedata/*
 	1b. Run parse_checker.py to verify that all the codedata now can be parsed properly (OPTIONAL)
 			$ python parse_checker.py files
-	2. Feed this to dataFeeder.py as arguement and run dataFeeder which feeds data to hashgen.py
+	2a. Feed this to dataFeeder.py as arguement and run dataFeeder which feeds data to hashgen.py
 			$ python dataFeeder.py files
+
+			-----------OR-------------
+	2b. This system can be used to incrementally add indices of codephrases of codes using hashgen.py. This is done so:
+		$ python hashgen.py <studentID> <code_file>
 SEARCH:
 	
 	Give your code stub file as arg to codeSearch.py and run it. It will look for a match
 			$ python codeSearch.py test_codestub.c
+
+			-----------OR-------------
+
+	If you have test data used by using xlreader.py, then use test_validate.py to produce excel sheets of codephrases in the testdata and their corresponding occurences in other student submissions
+			$ python test_validate.py <studentID> 'testdata/<studentID>.c'
+	 	
 CLEANING:
 
 	Run cleaner.py to clean all generated code on finishing
